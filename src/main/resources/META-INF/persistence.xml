@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd"
+             version="3.0">
+
+    <persistence-unit name="ssbd01adminPU" transaction-type="JTA">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <jta-data-source>java:app/jdbc/ssbd01admin</jta-data-source>
+
+        <exclude-unlisted-classes>false</exclude-unlisted-classes>
+
+        <properties>
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
+            <property name="hibernate.transaction.jta.platform" value="org.hibernate.service.jta.platform.internal.SunOneJtaPlatform"/>
+
+            <property name="jakarta.persistence.schema-generation.database.action" value="drop-and-create"/>
+            <property name="jakarta.persistence.sql-load-script-source" value="init_db.sql"/>
+        </properties>
+    </persistence-unit>
+
+    <persistence-unit name="ssbd01authPU" transaction-type="JTA">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <jta-data-source>java:app/jdbc/ssbd01auth</jta-data-source>
+
+        <exclude-unlisted-classes>false</exclude-unlisted-classes>
+
+        <shared-cache-mode>NONE</shared-cache-mode>
+        <properties>
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
+            <property name="hibernate.transaction.jta.platform" value="org.hibernate.service.jta.platform.internal.SunOneJtaPlatform"/>
+
+        </properties>
+    </persistence-unit>
+
+    <persistence-unit name="ssbd01mokPU" transaction-type="JTA">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <jta-data-source>java:app/jdbc/ssbd01mok</jta-data-source>
+
+        <class>pl.lodz.p.it.ssbd2023.ssbd01.entities.AccessLevel</class>
+        <class>pl.lodz.p.it.ssbd2023.ssbd01.entities.Account</class>
+        <class>pl.lodz.p.it.ssbd2023.ssbd01.entities.AdminData</class>
+        <class>pl.lodz.p.it.ssbd2023.ssbd01.entities.ChemistData</class>
+        <class>pl.lodz.p.it.ssbd2023.ssbd01.entities.PatientData</class>
+        <class>pl.lodz.p.it.ssbd2023.ssbd01.entities.Token</class>
+
+        <shared-cache-mode>NONE</shared-cache-mode>
+        <properties>
+            <property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+            <property name="hibernate.transaction.jta.platform" value="org.hibernate.service.jta.platform.internal.SunOneJtaPlatform"/>
+        </properties>
+    </persistence-unit>
+
+    <persistence-unit name="ssbd01moaPU" transaction-type="JTA">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <jta-data-source>java:app/jdbc/ssbd01moa</jta-data-source>
+
+        <class>pl.lodz.p.it.ssbd2023.ssbd01.entities.Category</class>
+        <class>pl.lodz.p.it.ssbd2023.ssbd01.entities.ChemistData</class>
+        <class>pl.lodz.p.it.ssbd2023.ssbd01.entities.Medication</class>
+        <class>pl.lodz.p.it.ssbd2023.ssbd01.entities.Order</class>
+        <class>pl.lodz.p.it.ssbd2023.ssbd01.entities.OrderMedication</class>
+        <class>pl.lodz.p.it.ssbd2023.ssbd01.entities.PatientData</class>
+        <class>pl.lodz.p.it.ssbd2023.ssbd01.entities.Shipment</class>
+        <class>pl.lodz.p.it.ssbd2023.ssbd01.entities.ShipmentMedication</class>
+
+        <shared-cache-mode>NONE</shared-cache-mode>
+        <properties>
+            <property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
+            <property name="hibernate.transaction.jta.platform" value="org.hibernate.service.jta.platform.internal.SunOneJtaPlatform"/>
+            <property name="hibernate.cache.use_second_level_cache" value="false"/>
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+        </properties>
+    </persistence-unit>
+</persistence>

@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  db:
+    build: postgres
+    container_name: ssbd01_postgres
+    hostname: ssbd_db
+    environment:
+      POSTGRES_DB: ssbd01
+      POSTGRES_USER: ssbd01admin
+      POSTGRES_PASSWORD: admin
+    ports:
+      - 5432:5432
+    volumes:
+      - pg:/var/lib/postgresql/data
+
+#  jacoco:
+#    image: ictu/jacoco-agent-docker
+#    volumes:
+#      - jacoco:/jacoco:ro
+#
+#  payara:
+#    environment:
+#      JVM_ARGS: "-javaagent:/jacoco/lib/jacocoagent.jar=excludes=*_javassit_*:javax.xml.soap.*:oasis.*,output=tcpserver,address=*"
+#    build: payara/server-full:6.2023.2-jdk17
+#    container_name: ssbd01_payara
+#    ports:
+#      - 8080:8080
+#      - 4848:4848
+#      - 6300:6300
+#    volumes:
+#      - jacoco:/jacoco:ro
+
+volumes:
+  pg:
+#  jacoco:
